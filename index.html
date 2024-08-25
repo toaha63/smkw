@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shahid Mughdho Keyboard</title>
     <style>
+        @font-face {
+            font-family: 'Kalpurush';
+            src: url('https://github.com/toaha63/smkw/blob/main/Kalpurush.ttf?raw=true') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Kalpurush', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
         }
+
         header {
             background-color: #282c34;
             color: white;
             padding: 20px;
             text-align: center;
         }
+
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -25,6 +34,7 @@
             background: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .download-btn {
             display: inline-block;
             padding: 10px 20px;
@@ -35,10 +45,41 @@
             border-radius: 5px;
             font-weight: bold;
             transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+            text-align: center;
         }
+
         .download-btn:hover {
             background-color: #0056b3;
         }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            color: #007bff;
+            text-decoration: none;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown a:hover {
+            background-color: #f1f1f1;
+        }
+
         footer {
             text-align: center;
             padding: 10px;
@@ -48,6 +89,7 @@
             width: 100%;
             bottom: 0;
         }
+
         #feedback iframe {
             width: 100%;
             border: none;
@@ -62,9 +104,15 @@
     </header>
     <div class="container">
         <h2>About the Keyboard</h2>
-        <p>Shahid Mughdho Keyboard is a Windows keyboard app, made by Hasin Israk Toaha (SSC 2025), dedicated to all Martyrs' in the quota movement of Bangladesh 2024. I have added Bijoy Layout, Probhat Layout, and Gitanjali Layout for writing Bangla. You can write in Unicode. This software uses low-level keyboard hooks; for this reason, Windows Defender and some antivirus software might flag it as a virus. However, it is not a virus. You can use this software with safety. We don't collect user data!</p>
-        <a href="https://github.com/toaha63/shmkw/raw/main/Shahid%20Mughdho%20Keyboard%201.08%20(With%20Unicode%20Fonts%20for%20DUHS).zip" class="download-btn" target="_blank">Download Now</a>
+        <p>Shahid Mughdho Keyboard is a Windows keyboard app, made by Hasin Israk Toaha (SS 2025), dedicated to all Martyrs' in the quota movement of Bangladesh 2024. I have added Bijoy Layout, Probhat Layout, and Gitanjali Layout for writing Bangla. You can write in Unicode. This software uses low-level keyboard hooks; for this reason, Windows Defender and some antivirus software might flag it as a virus. However, it is not a virus. You can use this software with safety. We don't collect user data!</p>
         
+        <button id="download-btn" class="download-btn">Download Now</button>
+        <div id="dropdown" class="dropdown">
+            <a href="https://github.com/toaha63/smkw/raw/main/Shahid%20Mughdho%20Keyboard%201.00.zip" target="_blank">Shahid Mughdho Keyboard 1.00</a>
+            <a href="https://github.com/toaha63/smkw/raw/main/Shahid%20Mughdho%20Keyboard%202.00.zip" target="_blank">Shahid Mughdho Keyboard 2.00</a>
+            <!-- Add more links as needed -->
+        </div>
+
         <div id="feedback">
             <h3>Leave Us Your Feedback</h3>
             <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScDc-_JrmlXn-Ee3LJOqRpyuTgZzl1H7mzqnSZGqPt7u9oZmQ/viewform?embedded=true" width="640" height="644" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
@@ -73,5 +121,22 @@
     <footer>
         <p>&copy; 2024 Shahid Mughdho Keyboard. All rights reserved.</p>
     </footer>
+    
+    <script>
+        document.getElementById('download-btn').addEventListener('click', function() {
+            var dropdown = document.getElementById('dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.matches('#download-btn')) {
+                var dropdown = document.getElementById('dropdown');
+                if (dropdown.style.display === 'block') {
+                    dropdown.style.display = 'none';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
