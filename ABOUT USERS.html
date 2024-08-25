@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Device and Browser Information</title>
+  <style>
+    body
+    {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #device-info,
+    #browser-info {
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th,
+    table td {
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Device and Browser Information</h1>
+
+  <div id="device-info">
+    <h2>Device Information</h2>
+    <table>
+      <tr>
+        <th>Property</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Device</td>
+        <td id="device"></td>
+      </tr>
+      <tr>
+        <td>Operating System</td>
+        <td id="os"></td>
+      </tr>
+      <tr>
+        <td>Operating System Version</td>
+        <td id="os-version"></td>
+      </tr>
+      <tr>
+        <td>Screen Resolution</td>
+        <td id="screen-resolution"></td>
+      </tr>
+      <tr>
+        <td>Screen Size (in inches)</td>
+        <td id="screen-size"></td>
+      </tr>
+      <tr>
+        <td>IP Address</td>
+        <td id="ip-address"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div id="browser-info">
+    <h2>Browser Information</h2>
+    <table>
+      <tr>
+        <th>Property</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>User Agent</td>
+        <td id="user-agent"></td>
+      </tr>
+      <tr>
+        <td>Browser Name</td>
+        <td id="browser-name"></td>
+      </tr>
+      <tr>
+        <td>Browser Version</td>
+        <td id="browser-version"></td>
+      </tr>
+      <tr>
+        <td>Platform</td>
+        <td id="platform"></td>
+      </tr>
+      <tr>
+        <td>Cookies Enabled</td>
+        <td id="cookies-enabled"></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    // Device Information
+    document.getElementById("device").textContent = navigator.userAgent;
+    document.getElementById("screen-resolution").textContent = window.screen.width + " x " + window.screen.height;
+
+    // Calculate screen size in inches
+    var screenSize = Math.sqrt(Math.pow(window.screen.width, 2) + Math.pow(window.screen.height, 2)) / window.devicePixelRatio;
+    document.getElementById("screen-size").textContent = screenSize.toFixed(2) + " inches";
+
+    // Operating System
+    var operatingSystem = getOperatingSystem();
+    var operatingSystemVersion = getOperatingSystemVersion();
+    document.getElementById("os").textContent = operatingSystem;
+    document.getElementById("os-version").textContent = operatingSystemVersion;
+
+    // Browser Information
+    document.getElementById("user-agent").textContent = navigator.userAgent;
+
+    var browserName, browserVersion;
+    if (/opera|opr/i.test(navigator.userAgent)) {
+      browserName = 'Opera';
+      browserVersion = /(?:opera|opr)\/(\d+(\.\d+)?)/i.exec(navigator.userAgent)[1];
+    } else if (/chrome|crios|crmo/i.test(navigator.userAgent)) {
+      browserName = 'Chrome';
+      browserVersion = /(?:chrome|crios|crmo)\/(\d+(\.\d+)?)/i.exec(navigator.userAgent)[1];
+    } else if (/firefox|fxios/i.test(navigator.userAgent)) {
+      browserName = 'Firefox';
+      browserVersion = /(?:firefox|fxios)\/(\d+(\.\d+)?)/i.exec(navigator.userAgent)[1];
+    } else if (/edge|edgios|edga|edg|ucbrowser|ucweb|msie|trident/i.test(navigator.userAgent)) {
+      browserName = 'Microsoft Edge';
+      browserVersion = /(?:edge|edgios|edga|edg|ucbrowser|ucweb|msie|rv|trident)\/(\d+(\.\d+)?)/i.exec(navigator.userAgent)[1];
+    } else if (/safari/i.test(navigator.userAgent)) {
+      browserName = 'Safari';
+      browserVersion = /version\/(\d+(\.\d+)?)/i.exec(navigator.userAgent)[1];
+    } else {
+      browserName = 'Unknown';
+      browserVersion = 'N/A';
+    }
+
+    document.getElementById("browser-name").textContent = browserName;
+    document.getElementById("browser-version").textContent = browserVersion;
+
+    // Platform
+    document.getElementById("platform").textContent = navigator.platform;
+
+    // Cookies Enabled
+    var cookiesEnabled = navigator.cookieEnabled ? 'Enabled' : 'Disabled';
+    document.getElementById("cookies-enabled").textContent = cookiesEnabled;
+
+    // Retrieve IP address using server-side code
+    fetch('get_ip_address.php')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        document.getElementById("ip-address").textContent = data.ip;
+      })
+      .catch(function(error) {
+        console.log('Error:', error);
+      });
+
+    function getOperatingSystem() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/android/i.test(userAgent)) {
+        return "Android";
+      }
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+      }
+
+      if (/windows phone/i.test(userAgent)) {
+        return "Windows Phone";
+      }
+
+      if (/windows/i.test(userAgent)) {
+        return "Windows";
+      }
+
+      if (/mac os/i.test(userAgent)) {
+        return "Mac OS";
+      }
+
+      if (/linux/i.test(userAgent)) {
+        return "Linux";
+      }
+
+      return "Unknown";
+    }
+
+    function getOperatingSystemVersion() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      var versionRegex;
+
+      if (/android/i.test(userAgent)) {
+        versionRegex = /Android\s(\d+(\.\d+)?)/i;
+      }
+
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        versionRegex = /OS\s(\d+(\.\d+)?)/i;
+      }
+
+      if (/windows phone/i.test(userAgent)) {
+        versionRegex = /Windows Phone\s(\d+(\.\d+)?)/i;
+      }
+
+      if (/windows/i.test(userAgent)) {
+        versionRegex = /Windows\s(\d+(\.\d+)?)/i;
+      }
+
+      if (/mac os/i.test(userAgent)) {
+        versionRegex = /Mac\sOS\sX\s(\d+(\.\d+)?)/i;
+      }
+
+      if (/linux/i.test(userAgent)) {
+        versionRegex = /Linux\s(\d+(\.\d+)?)/i;
+      }
+
+      if (versionRegex && versionRegex.test(userAgent)) {
+        return versionRegex.exec(userAgent)[1];
+      }
+
+      return "N/A";
+    }
+  </script>
+</body>
+</html>
