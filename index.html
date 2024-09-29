@@ -101,13 +101,30 @@
 </head>
 <body>
     <header>
+
         <h1>Shahid Mughdho Keyboard</h1>
         <p>The ultimate Bangla keyboard for your Windows Computer</p>
     </header>
     <div class="container">
+    	<img src="https://iili.io/dZQ2IfV.png" alt="Shahid Mughdho Keyboard Image" style="width: 100%; height: auto;">
         <h2>About the Keyboard</h2>
-        <p>Shahid Mughdho Keyboard is a Windows keyboard app, made by Hasin Israk Toaha (SSC 2025), dedicated to all Martyrs' in the quota movement of Bangladesh 2024. I have added Bijoy Layout, Probhat Layout, and Gitanjali Layout for writing Bangla. You can write in Unicode. This software uses low-level keyboard hooks; for this reason, Windows Defender and some antivirus software might flag it as a virus. However, it is not a virus. You can use this software with safety. We don't collect user data!</p>
-        
+        <p>
+    Shahid Mughdho Keyboard is a Windows keyboard app, made by 
+    <a href="https://www.facebook.com/constant.t.10/" target="_blank">Hasin Israk Toaha</a> (SSC 2025), dedicated to all Martyrs' in the quota movement of Bangladesh 2024. I have added Bijoy Layout, Probhat Layout, and Gitanjali Layout for writing Bangla. You can write in Unicode. This software uses low-level keyboard hooks; for this reason, Windows Defender and some antivirus software might flag it as a virus. However, it is not a virus. You can use this software with safety. We don't collect user data!
+</p>
+<ul>
+    <li>Name: শহীদ মুগ্ধ কিবোর্ড।</li>
+    <li>Size: ±2.68MB</li>
+    <li>Layout:বিজয় ইউনিকোড, প্রভাত, গীতাঞ্জলি।</li>
+    <li>Hardware Specification:ইন্টেল অ্যাটম, ২৫৬মেগাবাইট র‍্যাম, ৬মেগাবাইট হার্ডডিস্ক, উইন্ডোজ ৯৮+</li>
+    
+</ul>
+<br>
+<ul>
+    <li>Programming, icon, Splash Sound: <a href="https://www.facebook.com/constant.t.10/" target="_blank">Hasin Israk Toaha (SSC 2025)</a></li>
+    <li>Splash Screen Design: <a href="https://www.facebook.com/profile.php?id=100090170445050" target="_blank">Sahanaj Mim (SSC 2025)</a></li>
+</ul>
+
         <button id="download-btn" class="download-btn">Download Now!(zip password is:SMK)</button>
         <div id="dropdown" class="dropdown">
             <a href="https://github.com/toaha63/smkw/blob/main/Shahid%20Mughdho%20Keyboard%201.08%20(With%20Unicode%20Fonts%20for%20DUHS).zip?raw=true" target="_blank">Shahid Mughdho Keyboard 1.08</a>
@@ -117,7 +134,7 @@
             <a href="https://github.com/toaha63/smkw/blob/main/Shahid%20Mughdho%20Keyboard%202.02.zip?raw=true" target="_blank">Shahid Mughdho Keyboard 2.02</a>
             <a href="https://github.com/toaha63/smkw/blob/main/Shahid%20Mughdho%20Keyboard%202.03.zip?raw=true" target="_blank">Shahid Mughdho Keyboard 2.03</a>
             <a href="https://github.com/toaha63/smkw/raw/refs/heads/main/Shahid%20Mughdho%20Keyboard%202.04.zip" target="_blank">Shahid Mughdho Keyboard 2.04</a>
-             <a href="https://github.com/toaha63/smkw/raw/refs/heads/main/Shahid%20Mughdho%20Keyboard%202.05.zip" target="_blank">Shahid Mughdho Keyboard 2.05</a>
+            <a href="https://github.com/toaha63/smkw/raw/refs/heads/main/Shahid%20Mughdho%20Keyboard%202.05.zip" target="_blank">Shahid Mughdho Keyboard 2.05</a>
             
             <!-- Add more links as needed -->
         </div>
@@ -132,6 +149,18 @@
     </footer>
     
     <script>
+    	function adjustImageSize() {
+            const img = document.getElementById('responsive-image');
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            // Set the image dimensions based on the window size
+            img.style.width = `${windowWidth}px`;
+            img.style.height = `${(img.naturalHeight / img.naturalWidth) * windowWidth}px`;
+        }
+
+        window.onload = adjustImageSize;
+        window.onresize = adjustImageSize;
         document.getElementById('download-btn').addEventListener('click', function() {
             var dropdown = document.getElementById('dropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
